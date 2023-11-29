@@ -24,40 +24,43 @@ class StopWatch extends React.Component {
         });
         
         startTime = stopTime;
-      }, 250); // Executed every 250 millisecond
+      }, 250);
     }
   }
-
-  stop() {
-    window.clearInterval(this.timer);
-    this.timer = null;
-  }
-
-  reset() {
-    this.stop();
-    this.setState({
-      timePassedInMilliSeconds: 0
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <h2 className="border px-3 py-4 rounded my-3 mx-auto text-center" style={{maxWidth: "300px"}}>
-          {Math.floor(this.state.timePassedInMilliSeconds / 1000)} s
-        </h2>
-        <div className="d-flex justify-content-center">
-          <button className="btn btn-primary mr-2" onClick={this.start}>
-            start
-          </button>
-          <button className="btn btn-danger mr-2" onClick={this.stop}>
-            stop
-          </button>
-          <button className="btn btn-warning" onClick={this.reset}>
-            reset
-          </button>
+    stop() {
+      window.clearInterval(this.timer);
+      this.timer = null;
+    }
+  
+    reset() {
+      this.stop();
+      this.setState({
+        timePassedInMilliSeconds: 0
+      })
+    }
+  
+    render() {
+      return (
+        <div>
+          <h2 className="border px-3 py-4 rounded my-3 mx-auto text-center" style={{maxWidth: "300px"}}>
+            {Math.floor(this.state.timePassedInMilliSeconds / 1000)} s
+          </h2>
+          <div className="d-flex justify-content-center">
+            <button className="btn btn-primary mr-2" onClick={this.start}>
+              start
+            </button>
+            <button className="btn btn-danger mr-2" onClick={this.stop}>
+              stop
+            </button>
+            <button className="btn btn-warning" onClick={this.reset}>
+              reset
+            </button>
+          </div>
         </div>
-      </div>
-    )
-  }
+      )
+    }
 }
+
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+root.render(<StopWatch />);
